@@ -1,0 +1,14 @@
+<!-- bootstrap css -->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap2.css">
+
+
+<!-- For menus switch active class by jquery -->
+<script>
+	$(document).ready(function() {
+		$('ul.nav > li').click(function(e) {
+			e.preventDefault();
+			$('ul.nav > li').removeClass('active');
+			$(this).addClass('active');
+		});
+	});
+</script>

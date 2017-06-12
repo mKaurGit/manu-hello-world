@@ -1,0 +1,58 @@
+<h1 align="center">{{header}}</h1>
+
+{{data.peopleDropdownFilter}}
+
+<div class="row spacer">
+	<!-- UI select dropdown -->
+	<div class="col-sm-6">
+		<label class="col-sm-6">UI Select Dropdown : </label>
+		<ui-select class="col-sm-6" ng-model="data.peopleDropdownFilter" 
+			theme="bootstrap" search-enabled="true"> <ui-select-match allow-clear="true"
+			placeholder="Select a person.."> {{$select.selected.name}} </ui-select-match> <ui-select-choices
+			repeat="option.name as option in (people | filter: $select.search ) track by $index">
+		<span ng-bind-html="option.name | highlight: $select.search"></span> </ui-select-choices> </ui-select>
+	</div>
+	<!-- /UI select dropdown -->
+
+	<!-- Bootstrap Dropdown -->
+	<div class="col-sm-6">
+		<label class="col-sm-6">Bootstrap Dropdown : </label>
+		<div class="dropdown col-sm-6">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" ng-model="data.peopleDropdownFilter"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				{{selectedItem}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li ng-repeat="p in people"><a ng-model="data.peopleDropdownFilter" ng-click="dropboxitemselected(p.name)">{{p.name}}</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			</ul>
+		</div>
+		<!-- /Bootstrap Dropdown -->
+	</div>
+</div>
+
+<div class="row spacer">
+
+	<!-- Angular UI Dropdown -->
+	<div class="col-sm-6">
+		<label class="col-sm-6">Angular UI Dropdown : </label>
+		<div class="btn-group col-sm-6" uib-dropdown is-open="status.isopen">
+			<button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-model="data.peopleDropdownFilter"
+				ng-disabled="disabled">
+				{{selectedItem}} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu"  uib-dropdown-menu role="menu" aria-labelledby="single-button">
+				<li ng-repeat="p in people" role="menuitem"><a ng-model="data.peopleDropdownFilter" ng-click="dropboxitemselected(p.name)" >{{p.name}}</a></li>
+				<li class="divider"></li>
+				<li role="menuitem"><a href="#">Separated link</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /Angular UI Dropdown -->
+
+</div>
+
+<p>
+	<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</p>
